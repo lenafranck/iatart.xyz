@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<head>
+<style>
+.p1 {
+    border:6px solid #b0e0e6;
+    background-color: #b0e0e6;
+    color: black;
+    border-radius: 25px;
+    width: 110px;
+    height: 25px;
+    position: absolute;
+      left: 0px;
+
+}
+.p2 {
+    border:6px solid #b0e0e6;
+    background-color: #b0e0e6;
+    color: black;
+    border-radius: 25px;
+    position: absolute;
+       right: 0px;
+       width: 300px;
+    width: 110px;
+    height: 25px;
+}
+</style>
+
+
+
+  <script>
+
+
+var cursor = 0;
+
+      var allWords = ["successful", "poor", "rich", "happy","unsuccessful", "sad"];
+      var eWords = ["successful", "rich", "happy"];
+      var iWords = ["unsuccessful","poor", "sad"];
+      var currentWord = allWords[cursor];
+
+      var starttime = new Date().getTime();
+      var results=[];
+
+
+document.onkeydown = function(event) {
+
+    var key_press = String.fromCharCode(event.keyCode);
+    var test = document.getElementById('test');
+    var status = document.getElementById('status');
+
+        if (key_press == "E" || key_press == "I") {
+
+          var currenttime = new Date().getTime();
+          duration= currenttime-starttime;
+          console.log(duration);
+          var correct;
+
+          if (key_press == "E") {
+            var a = eWords.indexOf(currentWord);
+            correct =(a!=-1);
+          }
+
+          else if (key_press =="I") {
+            var b = iWords.indexOf(currentWord);
+            correct =(a!=-1);
+          }
+
+          //alert(key_press + currentWord);
+          var result={"word":currentWord, "duration": duration,"correct":correct,};
+          results.push(result);
+          shownextWord();
+          //alert(duration);
+
+
+          }
+        }
+
+
+
+function shownextWord() {
+
+    starttime = new Date().getTime();
+
+    var status = document.getElementById('status');
+    currentWord=allWords[cursor];
+    status.innerHTML=(allWords[cursor]);
+    cursor++
+    var test1 = eWords.indexOf("successful");
+    var test2 = eWords.indexOf("painter");
+    var wordstest1 = document.getElementById("ecategory").innerHTML;
+
+
+      if (cursor>=allWords.length && wordstest1=="Positive Words") {
+         info.innerHTML=("Good! Now click the button again to start the next test.");
+         status.innerHTML=("");
+         ecategory.innerHTML=("Art School Majors");
+         icategory.innerHTML=("Non Art School Majors");
+         eWords = ["painter", "artist", "artschool"];
+         iWords = ["economics","business", "enjineering"];
+         allWords = ["enjineering", "artist", "business", "painter","artschool", "economics"];
+         cursor=0;
+        }
+      else if (cursor>=allWords.length && wordstest1=="Art School Majors") {
+          info.innerHTML=("Good! Now click the button again to start the next test.");
+          status.innerHTML=("");
+          ecategory.innerHTML=("Art School Majors or good words");
+          icategory.innerHTML=("Non Art School Majors or bad words");
+          eWords = ["painter", "artist", "artschool", "successful", "rich", "happy"];
+          iWords = ["economics","business", "enjineering", "unsuccessful", "poor", "sad"];
+          allWords = ["enjineering", "rich", "poor", "painter","artschool", "unsuccessful","happy","business", "artist","economics", "successful","sad"];
+          cursor=0;
+        }
+      else if (cursor>=allWords.length && wordstest1=="Art School Majors or good words") {
+          info.innerHTML=("Good! Now click the button again to start the next test.");
+          status.innerHTML=("");
+          ecategory.innerHTML=("Art School Majors or bad words");
+          icategory.innerHTML=("Non Art School Majors or good words");
+          eWords = ["painter", "artist", "artschool", "unsuccessful", "poor", "sad"];
+          iWords = ["economics","business", "enjineering", "successful", "rich", "happy"];
+          allWords = ["enjineering", "rich", "poor", "painter","artschool", "unsuccessful","happy","business", "artist","economics", "successful","sad"];
+          cursor=0;
+        }
+
+      else if (cursor>=allWords.length && wordstest1=="Art School Majors or bad words") {
+          info.innerHTML=("You have finished! Press the button again to get your results.");
+          status.innerHTML=("<input type='button' onclick='getResults()'; value='Get Results!'>");
+          document.getElementById("status").innerHTML=("<input type='button' onclick='getResults()'; value='Get Results!'>");
+
+          }
+}
+
+
+function getResults() {
+
+document.write("hello");
+
+
+ }
+
+  </script>
+
+
+</head>
+<body>
+
+
+  <p id="ecategory" class="p1">Positive Words</p>
+  <p id="icategory"class="p2">Negative Words</p></br></br></br></br>
+
+
+  <div align="center">
+  <p id="status"><p>
+  </div></br>
+
+
+  <div align="center">
+  <input id="beginbutton" type="button" onclick="shownextWord()"; value="Begin!" >
+  </div>
+
+
+  <div align="center">
+  <p id="info">To start the test, click the button above.
+      Use the keys e and i on your keyboard to sort the
+      word that pops up, into its correct category.  The key
+      e corresponds with the box on the left and the key
+      i corresponds to the box on the right. The test
+      will only work if you sort the words into the correct
+      cateogry as fast as you can.  You must go quickly
+      in order for it to correctly assess your results.<p>
+  </div></br>
+
+
+</body>
+</html>
