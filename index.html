@@ -30,6 +30,7 @@
   <script>
 
 
+
 var cursor = 0;
 
       var allWords = ["successful", "poor", "rich", "happy","unsuccessful", "sad"];
@@ -131,8 +132,10 @@ function shownextWord() {
 
 function getResults() {
 
-document.write("hello");
-
+$.post(
+    'http://lenafranck.github.io/iatart.xyz/',
+    {data: 'results'}
+)
 
  }
 
