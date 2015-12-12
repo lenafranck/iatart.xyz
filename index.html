@@ -32,6 +32,7 @@
 
 var cursor = 0;
 
+
       var allWords = ["successful", "poor", "rich", "happy","unsuccessful", "sad", "thriving", "prosperous", "lacking", "wealthy", "failing","loser"];
       var eWords = ["successful", "rich", "thriving", "prosperous", "happy", "wealthy"];
       var iWords = ["unsuccessful","poor","loser", "failing", "lacking", "sad"];
@@ -41,6 +42,9 @@ var cursor = 0;
       var results1=[];
       var results2=[];
 
+var cursor2= 0;
+var cursor3= 27;
+//var currentResult=result[cursor2];
 
 document.onkeydown = function(event) {
 
@@ -67,19 +71,21 @@ document.onkeydown = function(event) {
           }
 
           //alert(key_press + currentWord);
-          var result={"word":currentWord, "duration": duration,"correct":correct};
-        //  var result={currentWord,duration,correct};
+          var result= {"position": cursor2, "word":currentWord, "duration": duration,"correct":correct};
+
                 if (wordstest2=="Non Art Career Related Words or negative words") {
-                results1.push(result);
+                  cursor2++
+                  results1.push(result);
                 }
-                else if (wordstest2=="Non Art Career Related Words or positive words")
-                results2.push(result);
+                else if (wordstest2=="Non Art Career Related Words or positive words") {
+                  cursor2++
+                  results2.push(result);
               }
+          }
+
           shownextWord();
           //alert(duration);
-
-
-          }
+}
 
 
 
