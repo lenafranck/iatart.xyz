@@ -137,8 +137,7 @@ function shownextWord() {
 function getResults() {
 
 var submission ={}; 
-submission.date=new Date().getTime(); 
-submission.data=results;
+submission.data=JSON.stringify(results);
 
 $.post(
     'https://nameless-chamber-6592.herokuapp.com/save',
