@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <head>
-<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <style>
 .p1 {
     border:6px solid #b0e0e6;
@@ -31,16 +30,16 @@
   <script>
 
 
-
 var cursor = 0;
 
-      var allWords = ["successful", "poor", "rich", "happy","unsuccessful", "sad"];
-      var eWords = ["successful", "rich", "happy"];
-      var iWords = ["unsuccessful","poor", "sad"];
+      var allWords = ["successful", "poor", "rich", "happy","unsuccessful", "sad", "thriving", "prosperous", "lacking", "wealthy", "failing","loser"];
+      var eWords = ["successful", "rich", "thriving", "prosperous", "happy", "wealthy"];
+      var iWords = ["unsuccessful","poor","loser", "failing", "lacking", "sad"];
       var currentWord = allWords[cursor];
 
       var starttime = new Date().getTime();
-      var results=[];
+      var results1=[];
+      var results2=[];
 
 
 document.onkeydown = function(event) {
@@ -48,6 +47,7 @@ document.onkeydown = function(event) {
     var key_press = String.fromCharCode(event.keyCode);
     var test = document.getElementById('test');
     var status = document.getElementById('status');
+    var wordstest2 = document.getElementById("icategory").innerHTML;
 
         if (key_press == "E" || key_press == "I") {
 
@@ -67,16 +67,20 @@ document.onkeydown = function(event) {
           }
 
           //alert(key_press + currentWord);
-          var result={"word":currentWord, "duration": duration,"correct":correct,};
-    
-          
-          results.push(result);
+          var result={"word":currentWord, "duration": duration,"correct":correct};
+        //  var result={currentWord,duration,correct};
+                if (wordstest2=="Non Art Career Related Words or negative words") {
+                results1.push(result);
+                }
+                else if (wordstest2=="Non Art Career Related Words or positive words")
+                results2.push(result);
+              }
           shownextWord();
           //alert(duration);
 
 
           }
-        }
+
 
 
 
@@ -88,43 +92,44 @@ function shownextWord() {
     currentWord=allWords[cursor];
     status.innerHTML=(allWords[cursor]);
     cursor++
-    var test1 = eWords.indexOf("successful");
-    var test2 = eWords.indexOf("painter");
+
     var wordstest1 = document.getElementById("ecategory").innerHTML;
 
 
       if (cursor>=allWords.length && wordstest1=="Positive Words") {
          info.innerHTML=("Good! Now click the button again to start the next test.");
          status.innerHTML=("");
-         ecategory.innerHTML=("Art School Majors");
-         icategory.innerHTML=("Non Art School Majors");
-         eWords = ["painter", "artist", "artschool"];
-         iWords = ["economics","business", "enjineering"];
-         allWords = ["enjineering", "artist", "business", "painter","artschool", "economics"];
+         ecategory.innerHTML=("Art Career Related Words");
+         icategory.innerHTML=("Non Art Career Related Words");
+         eWords = ["painter", "sculptor", "fine art", "designer", "artistic", "creative", "photographer"];
+         iWords = ["economics", "business", "engineer", "doctor", "scientist", "mathematician", "lawyer"];
+         allWords = ["engineer", "doctor", "designer", "economics", "painter", "creative", "mathematician", "sculptor", "artistic", "lawyer", "scientist", "business", "fine art", "photographer"];
          cursor=0;
         }
-      else if (cursor>=allWords.length && wordstest1=="Art School Majors") {
+      else if (cursor>=allWords.length && wordstest1=="Art Career Related Words") {
           info.innerHTML=("Good! Now click the button again to start the next test.");
           status.innerHTML=("");
-          ecategory.innerHTML=("Art School Majors or good words");
-          icategory.innerHTML=("Non Art School Majors or bad words");
-          eWords = ["painter", "artist", "artschool", "successful", "rich", "happy"];
-          iWords = ["economics","business", "enjineering", "unsuccessful", "poor", "sad"];
-          allWords = ["enjineering", "rich", "poor", "painter","artschool", "unsuccessful","happy","business", "artist","economics", "successful","sad"];
+          ecategory.innerHTML=("Art Career Related Words or positive words");
+          icategory.innerHTML=("Non Art Career Related Words or negative words");
+          eWords = ["painter", "artistic", "fine art", "designer", "sculptor", "creative", "photographer","successful", "rich", "happy","thriving", "prosperous", "wealthy"];
+          iWords = ["economics","business", "engineer", "doctor", "scientist", "mathematician", "lawyer", "unsuccessful", "poor", "loser", "failing", "lacking", "sad"];
+          allWords = ["engineer", "rich", "poor", "painter", "sculptor", "unsuccessful", "happy", "business", "artistic","economics", "successful", "lacking",
+          "fine art", "doctor", "thriving", "prosperous", "designer","wealthy", "loser", "scientist", "mathematician","photographer", "failing", "creative","lawyer","sad"];
           cursor=0;
         }
-      else if (cursor>=allWords.length && wordstest1=="Art School Majors or good words") {
+      else if (cursor>=allWords.length && wordstest1=="Art Career Related Words or positive words") {
           info.innerHTML=("Good! Now click the button again to start the next test.");
           status.innerHTML=("");
-          ecategory.innerHTML=("Art School Majors or bad words");
-          icategory.innerHTML=("Non Art School Majors or good words");
-          eWords = ["painter", "artist", "artschool", "unsuccessful", "poor", "sad"];
-          iWords = ["economics","business", "enjineering", "successful", "rich", "happy"];
-          allWords = ["enjineering", "rich", "poor", "painter","artschool", "unsuccessful","happy","business", "artist","economics", "successful","sad"];
+          ecategory.innerHTML=("Art Career Related Words or negative words");
+          icategory.innerHTML=("Non Art Career Related Words or positive words");
+          eWords = ["painter", "artistic", "fine art", "designer", "sculptor", "creative", "photographer", "unsuccessful", "poor", "loser", "failing", "lacking", "sad"];
+          iWords = ["economics","business", "engineer", "doctor", "scientist", "mathematician", "lawyer", "successful", "rich", "happy","thriving", "prosperous", "wealthy"];
+          allWords = ["artistic","unsuccessful","thriving","lawyer","mathematician","poor","painter","rich","doctor","designer","happy","sculptor","loser","economics","prosperous",
+          "business","failing", "lacking", "fine art","wealthy","scientist","successful","creative","engineer","photographer","sad"];
           cursor=0;
         }
 
-      else if (cursor>=allWords.length && wordstest1=="Art School Majors or bad words") {
+      else if (cursor>=allWords.length && wordstest1=="Art Career Related Words or negative words") {
           info.innerHTML=("You have finished! Press the button again to get your results.");
           status.innerHTML=("<input type='button' onclick='getResults()'; value='Get Results!'>");
           document.getElementById("status").innerHTML=("<input type='button' onclick='getResults()'; value='Get Results!'>");
@@ -133,18 +138,24 @@ function shownextWord() {
 }
 
 
-
 function getResults() {
 
-var submission ={}; 
-submission.data=JSON.stringify(results);
+var writeResults1= JSON.stringify(results1);
+var writeResults2= JSON.stringify(results2);
 
-$.post(
-    'https://nameless-chamber-6592.herokuapp.com/save',
-    {data: submission}
-)
+var a = results1[1];
+var b = JSON.stringify(results1[1]);
+//if (b instanceof int)
+//var b= Object.keys(results1);
+//var c= Object.getOwnPropertyNames(results1);
+ //for (results.obj[4])
+//var a= Object.getOwnPropertyNames(results1);
+document.write(writeResults1+writeResults2);
 
- }
+
+}
+
+
 
   </script>
 
