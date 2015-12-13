@@ -47,7 +47,7 @@ var cursor3= 27;
 
 
 var justnumbers1 = [];
-var justnumbers1 = [];
+var justnumbers2 = [];
 //var currentResult=result[cursor2];
 
 document.onkeydown = function(event) {
@@ -183,37 +183,41 @@ for (; i < len;) {
     x = allresults1[i];
     //txt1 += JSON.stringify(x["duration"]) + " ";
     txt1 += x["duration"] + " ";
+    justnumbers1.push(x["duration"]);
     i++;
 }
-  justnumbers1.push(txt1);
+  //justnumbers1.push(txt1);
 
 for (; i2 < len2;) {
     y = allresults2[i2];
     //txt2 += JSON.stringify(y["duration"]) + " ";
     txt2 += y["duration"] + " ";
+    justnumbers2.push(y["duration"]);
     i2++;
 }
-  justnumbers2.push(txt2);
 
-document.write(txt1+"</br></br>"+txt2);
-
-//var len3 = justnumbers1.length;
-//var total= 0;
-
-//for (; i < len3) {
-  
-}
-
-
-
-
-
-
-
+  calculateResults();
 
 }
 
+function calculateResults () {
 
+  var endresult = justnumbers1.reduce(function(prev,next,index) {
+        console.log(index + ":" + prev + ":" + next);
+        prev += next;
+        return prev;
+  },0);
+  var endresult2 = justnumbers2.reduce(function(prev,next,index) {
+        console.log(index + ":" + prev + ":" + next);
+        prev += next;
+        return prev;
+  },0);
+  console.log("Final Result of Test 3: " + endresult)
+  console.log("Final Result of Test 4: " + endresult2)
+
+  if (endresult)
+
+}
 
   </script>
 
