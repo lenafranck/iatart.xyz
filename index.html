@@ -27,37 +27,36 @@
 
 
 
-  <script>
-
+<script>
 
 var cursor = 0;
 
+var allWords = ["successful", "poor", "rich", "happy","unsuccessful", "sad", "thriving", "prosperous", "lacking", "wealthy", "failing","loser"];
+var eWords = ["successful", "rich", "thriving", "prosperous", "happy", "wealthy"];
+var iWords = ["unsuccessful","poor","loser", "failing", "lacking", "sad"];
+var currentWord = allWords[cursor];
 
-      var allWords = ["successful", "poor", "rich", "happy","unsuccessful", "sad", "thriving", "prosperous", "lacking", "wealthy", "failing","loser"];
-      var eWords = ["successful", "rich", "thriving", "prosperous", "happy", "wealthy"];
-      var iWords = ["unsuccessful","poor","loser", "failing", "lacking", "sad"];
-      var currentWord = allWords[cursor];
+var starttime = new Date().getTime();
+var results1=[];
+var results2=[];
 
-      var starttime = new Date().getTime();
-      var results1=[];
-      var results2=[];
 
 var cursor2= 0;
-var cursor3= 27;
 
 
 var justnumbers1 = [];
 var justnumbers2 = [];
-//var currentResult=result[cursor2];
+var justcorrect1 = [];
+var justcorrect2 = [];
 
 document.onkeydown = function(event) {
 
-    var key_press = String.fromCharCode(event.keyCode);
-    var test = document.getElementById('test');
-    var status = document.getElementById('status');
-    var wordstest2 = document.getElementById("icategory").innerHTML;
+var key_press = String.fromCharCode(event.keyCode);
+var test = document.getElementById('test');
+var status = document.getElementById('status');
+var wordstest2 = document.getElementById("icategory").innerHTML;
 
-        if (key_press == "E" || key_press == "I") {
+          if (key_press == "E" || key_press == "I") {
 
           var currenttime = new Date().getTime();
           duration= currenttime-starttime;
@@ -74,17 +73,17 @@ document.onkeydown = function(event) {
             correct =(a!=-1);
           }
 
-          //alert(key_press + currentWord);
           var result= {"position": cursor2, "word":currentWord, "duration": duration,"correct":correct};
 
-                if (wordstest2=="Non Art Career Related Words or negative words") {
-                  cursor2++
-                  results1.push(result);
+            if (allWords[0]=="engineer") {
+                cursor2++
+                results1.push(result);
                 }
-                else if (wordstest2=="Non Art Career Related Words or positive words") {
-                  cursor2++
-                  results2.push(result);
-              }
+              //  wordstest2=="Non Art Career Related Words or positive words"
+            else if (allWords[0]=="artistic") {
+                cursor2++
+                results2.push(result);
+                }
           }
 
           shownextWord();
@@ -107,17 +106,17 @@ function shownextWord() {
 
 
       if (cursor>=allWords.length && wordstest1=="Positive Words") {
-         info.innerHTML=("Good! Now click the button again to start the next test.");
+         info.innerHTML=("Good! Notice the changes made to the text categories. Click the button to begin the next test.");
          status.innerHTML=("");
          ecategory.innerHTML=("Art Career Related Words");
          icategory.innerHTML=("Non Art Career Related Words");
          eWords = ["painter", "sculptor", "fine art", "designer", "artistic", "creative", "photographer"];
          iWords = ["economics", "business", "engineer", "doctor", "scientist", "mathematician", "lawyer"];
-         allWords = ["engineer", "doctor", "designer", "economics", "painter", "creative", "mathematician", "sculptor", "artistic", "lawyer", "scientist", "business", "fine art", "photographer"];
+         allWords = ["doctor", "engineer", "designer", "economics", "painter", "creative", "mathematician", "sculptor", "artistic", "lawyer", "scientist", "business", "fine art", "photographer"];
          cursor=0;
         }
       else if (cursor>=allWords.length && wordstest1=="Art Career Related Words") {
-          info.innerHTML=("Good! Now click the button again to start the next test.");
+          info.innerHTML=("Good! Notice the changes made to the text categories. Click the button to begin the next test.");
           status.innerHTML=("");
           ecategory.innerHTML=("Art Career Related Words or positive words");
           icategory.innerHTML=("Non Art Career Related Words or negative words");
@@ -128,7 +127,7 @@ function shownextWord() {
           cursor=0;
         }
       else if (cursor>=allWords.length && wordstest1=="Art Career Related Words or positive words") {
-          info.innerHTML=("Good! Now click the button again to start the next test.");
+          info.innerHTML=("Good! Notice the changes made to the text categories. Click the button to begin the next test.");
           status.innerHTML=("");
           ecategory.innerHTML=("Art Career Related Words or negative words");
           icategory.innerHTML=("Non Art Career Related Words or positive words");
@@ -150,21 +149,13 @@ function shownextWord() {
 
 function getResults() {
 
-//var writeResults1= JSON.stringify(results1);
-//var writeResults2= JSON.stringify(results2);
-//var a = results1[1];
-//var b = JSON.stringify(a);
-//var c = JSON.parse(b);
-//var d = a["duration"];
-//var e = JSON.stringify(d);
-//document.write(e);
 
-var allresults1 = [results1[1],results1[2], results1[3], results1[4], results1[5], results1[6], results1[7], results1[8],
+var allresults1 = [results1[1], results1[2], results1[3], results1[4], results1[5], results1[6], results1[7], results1[8],
 results1[9], results1[10], results1[11], results1[12], results1[13], results1[14], results1[15], results1[16],
 results1[17], results1[18],results1[19], results1[20], results1[21], results1[22], results1[23],
 results1[24], results1[25]];
 
-var allresults2 = [results2[1],results2[2], results2[3], results2[4], results2[5], results2[6], results2[7], results2[8],
+var allresults2 = [results2[1], results2[2], results2[3], results2[4], results2[5], results2[6], results2[7], results2[8],
 results2[9], results2[10], results2[11], results2[12], results2[13], results2[14], results2[15], results2[16],
 results2[17], results2[18],results2[19], results2[20], results2[21], results2[22], results2[23],
 results2[24], results2[25]];
@@ -173,56 +164,100 @@ var len = allresults1.length;
 var len2 = allresults2.length;
 var i = 0
 var i2 = 0
+var i3 = 0
+var i4 = 0
 var txt1 = "";
 var txt2 = "";
+var txt3 = "";
+var txt4 = "";
 var x;
 var y;
+var x3;
+var y4;
 
 
-for (; i < len;) {
-    x = allresults1[i];
-    //txt1 += JSON.stringify(x["duration"]) + " ";
-    txt1 += x["duration"] + " ";
-    justnumbers1.push(x["duration"]);
-    i++;
+  for (; i+1< len;) {
+      x = allresults1[i];
+      //txt1 += JSON.stringify(x["duration"]) + " ";
+      txt1 += x["duration"] + " ";
+      justnumbers1.push(x["duration"]);
+      i++;
+  }
+    //justnumbers1.push(txt1);
+
+  for (; i2+1 < len2;) {
+      y = allresults2[i2];
+      //txt2 += JSON.stringify(y["duration"]) + " ";
+      txt2 += y["duration"] + " ";
+      justnumbers2.push(y["duration"]);
+      i2++;
+  }
+
+/*  for (; i3 < len;) {
+      x3 = allresults1[i3];
+      //txt1 += JSON.stringify(x["duration"]) + " ";
+      txt3 += x3["correct"] + " ";
+      justcorrect1.push(x3["correct"]);
+      i3++;
+  }
+
+
+  for (; i4 < len2;) {
+      y4 = allresults2[i4];
+      txt4 += y4["correct"] + " ";
+      justcorrect2.push(y4["correct"]);
+      i4++;
+  }
+  */
+
+    calculateResults();
+
 }
-  //justnumbers1.push(txt1);
 
-for (; i2 < len2;) {
-    y = allresults2[i2];
-    //txt2 += JSON.stringify(y["duration"]) + " ";
-    txt2 += y["duration"] + " ";
-    justnumbers2.push(y["duration"]);
-    i2++;
-}
 
-  calculateResults();
-
-}
 
 function calculateResults () {
 
-  var endresult = justnumbers1.reduce(function(prev,next,index) {
-        console.log(index + ":" + prev + ":" + next);
-        prev += next;
-        return prev;
-  },0);
-  var endresult2 = justnumbers2.reduce(function(prev,next,index) {
-        console.log(index + ":" + prev + ":" + next);
-        prev += next;
-        return prev;
-  },0);
+var len3 = justcorrect1.length
+var len4 = justcorrect2.length
+var correcttext= "";
+var incorrectarr= [];
+
+    var endresult = justnumbers1.reduce(function(prev,next,index) {
+          console.log(index + ":" + prev + ":" + next);
+          prev += next;
+          return prev;
+    },0);
+
+    var endresult2 = justnumbers2.reduce(function(prev,next,index) {
+          console.log(index + ":" + prev + ":" + next);
+          prev += next;
+          return prev;
+    },0);
+
+
+
+
+  //console.log(incorrectarr);
+
+
+  //var elena = JSON.stringify(results1);
+  //var elena2 = JSON.stringify(results2);
+  //document.write(elena+ elena2);
+
   console.log("Final Result of Test 3: " + endresult)
   console.log("Final Result of Test 4: " + endresult2)
+  //console.log("True or False Array: " + justcorrect1)
+  //console.log("True or False Array: " + justcorrect2)
 
   if (endresult > endresult2) {
-  document.write("You have a preference towards non-art related careers!")
+    document.write("You have a preference towards non-art related careers!")
   }
   else if (endresult < endresult2) {
-  document.write("You have a preference towards art related careers!")
+    document.write("You have a preference towards art related careers!")
   }
   else if (endresult == endresult2) {
-  document.write("You have 0 bias!")
+    document.write("You have 0 bias!")
   }
 
 
@@ -250,14 +285,16 @@ function calculateResults () {
 
 
   <div align="center">
-  <p id="info">To start the test, click the button above.
+  <p id="info">To begin the test, click the button above.</br></br>
+      How to Play:
       Use the keys e and i on your keyboard to sort the
-      word that pops up, into its correct category.  The key
-      e corresponds with the box on the left and the key
-      i corresponds to the box on the right. The test
-      will only work if you sort the words into the correct
-      cateogry as fast as you can.  You must go quickly
-      in order for it to correctly assess your results.<p>
+      appearing word, into its correct category.  The key
+      e corresponds with the text bubble on the left and the key
+      i corresponds to the text bubble on the right.
+      (Example: the word "nice" is sorted into "Positive Words"
+      on the left by clicking the E key on your keyboard.)
+      The test is timed, so you must sort words as quickly as you can
+      in order for the test to correctly assess your results.<p>
   </div></br>
 
 
