@@ -259,18 +259,33 @@ var incorrectarr= [];
   //console.log("True or False Array: " + justcorrect1)
   //console.log("True or False Array: " + justcorrect2)
 
+
+var subtraction = endresult-endresult2;
+
   if (endresult > endresult2) {
-      document.getElementById("info").innerHTML=("Based upon your results: </br> You have a preference towards non-art related careers!");
+
+  var ef = document.getElementById("info").innerHTML=(subtraction);
+
+        if (ef <= 1500) {
+          document.getElementById("info").innerHTML=("You have a small preference for Non-Art Related Careers!");
+        }
+        else if (ef > 1500 && ef <= 3500) {
+          document.getElementById("info").innerHTML=("You have a medium preference for Non-Art Related Careers!");
+        }
+        else if (ef >  3500) {
+          document.getElementById("info").innerHTML=("You have a strong preference for Non-Art Related Careers!");
+        }
   }
   else if (endresult < endresult2) {
-      document.getElementById("info").innerHTML=("Based upon your results: </br>You have a preference towards non-art related careers!");
+      document.getElementById("info").innerHTML=("Based upon your results: </br>You have a preference for Art Related Careers!");
   }
   else if (endresult == endresult2) {
-    document.getElementById("info").innerHTML=("Based upon your results: </br>You have no preference toward either!");
+    document.getElementById("info").innerHTML=("Based upon your results: </br>You have no preference toward either! Magical.");
   }
 
 
 }
+
 
   </script>
 
@@ -298,10 +313,10 @@ var incorrectarr= [];
       How to Play:
       Use the keys e and i on your keyboard to sort the
       appearing word, into its correct category.  The key
-      e corresponds with the text bubble on the left and the key
-      i corresponds to the text bubble on the right.
-      (Example: the word "nice" is sorted into "Positive Words"
-      on the left by clicking the E key on your keyboard.)
+      e corresponds with the text box on the left and the key
+      i corresponds to the text box on the right.
+      (Example: sort the word "nice" is the category "Positive Words"
+      by clicking the E key on your keyboard)
       The test is timed, so you must sort words as quickly as you can
       in order for the test to correctly assess your results.<p>
   </div></br>
