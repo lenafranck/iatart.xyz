@@ -1,27 +1,36 @@
 <!DOCTYPE html>
 <head>
+
+<title>IATart</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+
 <style>
 .p1 {
     border:6px solid #b0e0e6;
     background-color: #b0e0e6;
     color: black;
-    border-radius: 25px;
-    width: 110px;
-    height: 25px;
+    width: 150px;
+    height: 150px;
     position: absolute;
-      left: 0px;
+    padding: 10px;
+    left: 0px;
+    font-weight: bold;
 
 }
 .p2 {
     border:6px solid #b0e0e6;
     background-color: #b0e0e6;
     color: black;
-    border-radius: 25px;
     position: absolute;
-       right: 0px;
-       width: 300px;
-    width: 110px;
-    height: 25px;
+    right: 0px;
+    width: 300px;
+    width: 150px;
+    height: 150px;
+    padding: 10px;
+    font-weight: bold;
 }
 </style>
 
@@ -139,7 +148,7 @@ function shownextWord() {
         }
 
       else if (cursor>=allWords.length && wordstest1=="Art Career Related Words or negative words") {
-          info.innerHTML=("You have finished! Press the button again to get your results.");
+          info.innerHTML=("You have finished. Press get results!");
           status.innerHTML=("<input type='button' onclick='getResults()'; value='Get Results!'>");
           document.getElementById("status").innerHTML=("<input type='button' onclick='getResults()'; value='Get Results!'>");
 
@@ -251,13 +260,13 @@ var incorrectarr= [];
   //console.log("True or False Array: " + justcorrect2)
 
   if (endresult > endresult2) {
-    document.write("You have a preference towards non-art related careers!")
+      document.getElementById("info").innerHTML=("Based upon your results: </br> You have a preference towards non-art related careers!");
   }
   else if (endresult < endresult2) {
-    document.write("You have a preference towards art related careers!")
+      document.getElementById("info").innerHTML=("Based upon your results: </br>You have a preference towards non-art related careers!");
   }
   else if (endresult == endresult2) {
-    document.write("You have 0 bias!")
+    document.getElementById("info").innerHTML=("Based upon your results: </br>You have no preference toward either!");
   }
 
 
@@ -282,7 +291,7 @@ var incorrectarr= [];
   <div align="center">
   <input id="beginbutton" type="button" onclick="shownextWord()"; value="Begin!" >
   </div>
-
+</br>
 
   <div align="center">
   <p id="info">To begin the test, click the button above.</br></br>
