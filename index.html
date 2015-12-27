@@ -261,6 +261,8 @@ var incorrectarr= [];
 
 
 var subtraction = endresult-endresult2;
+var subtraction2 = endresult2-endresult;
+var ef2 = document.getElementById("info").innerHTML=(subtraction2);
 
   if (endresult > endresult2) {
 
@@ -276,8 +278,14 @@ var subtraction = endresult-endresult2;
           document.getElementById("info").innerHTML=("You have a strong preference for Non-Art Related Careers.");
         }
   }
-  else if (endresult < endresult2) {
-      document.getElementById("info").innerHTML=("Based upon your results: </br>You have a preference for Art Related Careers.");
+  else if (ef2 <= 1500) {
+      document.getElementById("info").innerHTML=("Based upon your results: </br>You have a small preference for Art Related Careers.");
+  }
+  else if (ef2 > 1500 && ef2 <= 3500) {
+      document.getElementById("info").innerHTML=("Based upon your results: </br>You have a medium preference for Art Related Careers.");
+  }
+  else if (ef2 >  3500) {
+      document.getElementById("info").innerHTML=("Based upon your results: </br>You have a large preference for Art Related Careers.");
   }
   else if (endresult == endresult2) {
     document.getElementById("info").innerHTML=("Based upon your results: </br>You have no preference toward either! Magical.");
